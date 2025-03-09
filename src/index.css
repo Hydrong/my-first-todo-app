@@ -1,0 +1,18 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  background-color: gray;
+  justify-content: center;
+  display: flex;
+}
+
+ul,
+ol,
+li {
+  list-style: none;
+}

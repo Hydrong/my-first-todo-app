@@ -1,0 +1,55 @@
+.container {
+    padding: 10px;
+    width: 500px;
+    height: 200px;
+    outline: 1px solid black;
+}
+
+.content-wrapper {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas:
+        "name        checkbox"
+        "description checkbox";
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr 2fr;
+    border: 2px dashed black;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.name {
+    grid-area: name;
+    padding: 0 15px;
+    align-items: center;
+    display: flex;
+    font-size: 22px;
+    font-weight: 900;
+}
+
+.description {
+    grid-area: description;
+    padding: 13px 15px;
+}
+
+.checkbox {
+    grid-area: checkbox;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.checkboxButton {
+    width: 40%;
+    aspect-ratio: 1;
+    border: 3px solid gray;
+    padding: 3px;
+}
+
+.checkboxButton__checked {
+    background-color: #16A34A;
+    width: 100%;
+    height: 100%;
+    box-shadow: 0 0 60px #16A34A;
+}
