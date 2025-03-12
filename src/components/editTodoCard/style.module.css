@@ -1,0 +1,38 @@
+.container {
+    background-color: #ddd;
+    border: 1px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.title {}
+
+.label {}
+
+.input {}
+
+.btn-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn {
+    padding: 3px;
+    border-radius: 5px;
+    border: 2px solid black;
+    margin-left: 3px;
+}
+
+.save-btn {
+    background-color: lime;
+}
+
+.cancel-btn {
+    background-color: gray;
+    color: white;
+}
