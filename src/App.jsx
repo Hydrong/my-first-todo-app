@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import cls from './App.module.css'
 import { Routes, Route, useNavigate } from 'react-router'
 import SettingsPage from './components/settingsPage/SettingsPage'
@@ -6,6 +6,7 @@ import ManagePage from './components/managePage/ManagePage'
 import TodoCard from './components/todoCard/TodoCard'
 import { createTodo, editTodo, getTodoList, removeTodo } from './manageTodoList'
 import EditTodoCard from './components/editTodoCard/EditTodoCard'
+import Page404 from './components/404/404'
 
 function Navbar() {
   const navigator = useNavigate()
@@ -22,9 +23,24 @@ function Navbar() {
 
 function Home() {
   const [todoList, setTodoList] = useState(null)
+  const [inManageTodoCard, setInManageTodoCard] = useState('no') // 'no' or 'create' or 'edit'
+
+  function handleCreateTodoCardBtnClick() {
+    setInManageTodoCard('create')
+  }
+
+  function handleCancelCreateTodoCard() {
+    setInManageTodoCard('no')
+  }
+
+  function handleSaveCreateTodoCard() {
+    setInManageTodoCard('no')
+    refreshTodoList()
+  }
+
   function refreshTodoList() {
-    const todoList = getTodoList()
-    setTodoList(todoList)
+    const newTodoList = getTodoList()
+    setTodoList(newTodoList)
   }
 
   useEffect(() => {
@@ -37,11 +53,21 @@ function Home() {
       <div>
         {
           todoList ?
-            <TodoCard name='이름' description='설명' />
+            todoList.values.map(todo => <TodoCard onDelete={
+              refreshTodoList} key={todo.id} id={todo.id} name={todo.name} description={todo.description} />)
             : <div style={{ fontFamily: 'sans-serif', fontSize: 25 }}>아무것도 없어 보이네요 ;^;</div>
         }
       </div>
-      <EditTodoCard />
+      <div className={cls['home-create-todo-card-btn']} onClick={handleCreateTodoCardBtnClick}>+</div>
+      {
+        inManageTodoCard !== 'no' ?
+          <EditTodoCard
+            mode={inManageTodoCard}
+            onCancel={handleCancelCreateTodoCard}
+            onSave={handleSaveCreateTodoCard}
+          />
+          : null
+      }
     </div>
   )
 }
@@ -54,6 +80,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/manage' element={<ManagePage />} />
         <Route path='/settings' element={<SettingsPage />} />
+
+        <Route path='*' element={<Page404 />} />
       </Routes>
       <Navbar />
     </div>

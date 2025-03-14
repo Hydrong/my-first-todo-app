@@ -38,4 +38,24 @@
 .home-container {
     width: 100%;
     padding: 10px 20px;
+    position: relative;
+}
+
+.home-create-todo-card-btn {
+    width: 70px;
+    height: 70px;
+    background-color: green;
+    border-radius: 50px;
+    border: 4px solid darkolivegreen;
+    color: white;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.home-create-todo-card-btn:hover {
+    background-color: lime;
 }

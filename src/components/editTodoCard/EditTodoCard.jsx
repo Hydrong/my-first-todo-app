@@ -1,5 +1,6 @@
 import { useState } from "react"
 import cls from './style.module.css'
+import { createTodo } from "../../manageTodoList"
 
 function EditTodoCard({ onSave, onCancel, mode = 'edit' }) {
     if (mode !== 'edit' && mode !== 'create') {
@@ -17,6 +18,7 @@ function EditTodoCard({ onSave, onCancel, mode = 'edit' }) {
 
     function save() {
         if (onSave) {
+            createTodo(name, description)
             onSave({name, description})
         }
     }
